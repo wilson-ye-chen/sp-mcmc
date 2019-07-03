@@ -4,7 +4,7 @@
 % Compare point-sets from various discrete approximation algorithms.
 % The target is the posterior of an IGARCH model. This script creates
 % Figure S3 in the supplement of SP-MCMC.
-% Date: January 25, 2019
+% Date: July 2, 2019
 %%
 
 % Add dependencies
@@ -39,7 +39,7 @@ nBurn = 1000;
 nSamp = 100000;
 nKeep = 20000;
 x0 = (lb + ub) ./ 2;
-Chain = mala(fp, fu, x0, 0.0035, nBurn + nSamp);
+Chain = mala(fp, fu, x0, 0.0035, eye(nDim), nBurn + nSamp);
 Chain = Chain((nBurn + 1):end, :);
 Chain = Chain(round(linspace(1, nSamp, nKeep)), :);
 

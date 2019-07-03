@@ -4,7 +4,7 @@
 % Compare point-sets from various discrete approximation algorithms.
 % The target is the posterior of an IGARCH model. The comparison is
 % based on the Wasserstein distance.
-% Date: January 23, 2019
+% Date: July 2, 2019
 %%
 
 % Add dependencies
@@ -39,7 +39,7 @@ b = sym('b', [1, nDim], 'real');
 nBurn = 1000;
 nSamp = 100000;
 x0 = (lb + ub) ./ 2;
-Chain = mala(fp, fu, x0, 0.0035, nBurn + nSamp);
+Chain = mala(fp, fu, x0, 0.0035, eye(nDim), nBurn + nSamp);
 Chain = Chain((nBurn + 1):end, :);
 
 % Kernel
@@ -50,7 +50,7 @@ k = (1 + (a - b) * LInv * (a - b)') .^ (-0.5);
 % (1) MALA
 nThin = 10;
 nIter = nPts .* nThin;
-[X, ~, ~, acMala] = mala(fp, fu, x0, 0.0035, nIter);
+[X, ~, ~, acMala] = mala(fp, fu, x0, 0.0035, eye(nDim), nIter);
 X1 = X(1:nThin:end, :);
 evl1 = repmat(2 .* nThin, nPts, 1);
 Seg1 = [ones(nPts, 1), [1:nPts]'];

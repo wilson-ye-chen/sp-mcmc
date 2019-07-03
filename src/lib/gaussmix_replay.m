@@ -19,7 +19,7 @@ function [h1, h2] = gaussmix_replay(X, SttPt, Mu, S, w, d, lb, ub, nStep, out)
 % h1    - handle to the 'point set' plot.
 % h2    - handle to the 'starting points' plot.
 %
-% Date: November 11, 2018
+% Date: July 2, 2019
 
     % Number of points
     nPart = size(X, 1);
@@ -40,7 +40,7 @@ function [h1, h2] = gaussmix_replay(X, SttPt, Mu, S, w, d, lb, ub, nStep, out)
     contour(t1, t2, Z, ...
         'levelstep', 0.01, ...
         'linewidth', 1, ...
-        'linecolor', [0.7, 0.7, 0.7]);
+        'linecolor', [0.5, 0.5, 0.5]);
     xlabel(['x_', num2str(d(1))]);
     ylabel(['x_', num2str(d(2))]);
     title('Point Set');
